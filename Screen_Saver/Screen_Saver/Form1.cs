@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+
 namespace Screen_Saver
 {
     public partial class Form1 : Form
@@ -9,18 +13,17 @@ namespace Screen_Saver
             public float Y;
             public float Speed;
             public float Size;
-            public Image Image;
+            public bool IsStar; // звёздочка или шарик
         }
 
         private List<Snowflake> snowflakes = new List<Snowflake>();
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private Random rand = new Random();
-        private Image background;
-        private Image[] snowImages;
 
         public Form1()
         {
             InitializeComponent();
+
             // Настройки окна
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
@@ -29,49 +32,40 @@ namespace Screen_Saver
             this.KeyDown += (s, e) => this.Close();
             this.MouseDown += (s, e) => this.Close();
 
-
-            // Загружаем снежинки 
-            snowImages = new Image[]
-            {
-                Image.FromFile(@"C:\C#\Коноплев 4 курс\Screen_Saver\Snow1.png"),
-                Image.FromFile(@"C:\C#\Коноплев 4 курс\Screen_Saver\Snow2.png")
-            };
-
             // Создаём снежинки
-            for (int i = 0; i < 120; i++)
+            for (int i = 0; i < 150; i++)
             {
                 snowflakes.Add(CreateSnowflake());
             }
 
             // Таймер
             timer.Interval = 10;
-            timer.Tick += timer1_Tick;
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
 
         private Snowflake CreateSnowflake()
         {
-            float size = rand.Next(10, 35);
+            float size = rand.Next(5, 25);
             return new Snowflake
             {
                 X = rand.Next(0, Screen.PrimaryScreen.Bounds.Width),
                 Y = rand.Next(-Screen.PrimaryScreen.Bounds.Height, 0),
-                Speed = (float)(rand.NextDouble() * 2 + size / 15f), // крупные падают быстрее
+                Speed = (float)(rand.NextDouble() * 5 + size / 6f),
                 Size = size,
-                Image = snowImages[rand.Next(snowImages.Length)]
+                IsStar = rand.Next(2) == 0 // половина кружки, половина звёздочки
             };
         }
 
-
-
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             foreach (var flake in snowflakes)
             {
                 flake.Y += flake.Speed;
+
                 if (flake.Y > Screen.PrimaryScreen.Bounds.Height)
                 {
-                    // Перезапускаем сверху
+                    // перезапускаем сверху
                     flake.Y = -flake.Size;
                     flake.X = rand.Next(0, Screen.PrimaryScreen.Bounds.Width);
                 }
@@ -83,11 +77,23 @@ namespace Screen_Saver
         {
             Graphics g = e.Graphics;
 
-
-            // Рисуем снежинки
-            foreach (var flake in snowflakes)
+            using (SolidBrush brush = new SolidBrush(Color.White))
+            using (Pen pen = new Pen(Color.White, 1))
             {
-                g.DrawImage(flake.Image, flake.X, flake.Y, flake.Size, flake.Size);
+                foreach (var flake in snowflakes)
+                {
+                    if (flake.IsStar)
+                    {
+                        // рисуем простую "звёздочку" (крестик)
+                        g.DrawLine(pen, flake.X - flake.Size / 2, flake.Y, flake.X + flake.Size / 2, flake.Y);
+                        g.DrawLine(pen, flake.X, flake.Y - flake.Size / 2, flake.X, flake.Y + flake.Size / 2);
+                    }
+                    else
+                    {
+                        // рисуем круг
+                        g.FillEllipse(brush, flake.X, flake.Y, flake.Size, flake.Size);
+                    }
+                }
             }
         }
     }
