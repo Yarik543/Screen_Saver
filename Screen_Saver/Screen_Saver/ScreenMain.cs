@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Screen_Saver
 {
     public partial class ScreenMain : Form
     {
+
         class Snowflake
         {
             public float X;
@@ -20,8 +22,10 @@ namespace Screen_Saver
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private Random rand = new Random();
 
+
         public ScreenMain()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             InitializeComponent();
 
             // Настройки окна
