@@ -1,6 +1,6 @@
 ﻿namespace Screen_Saver
 {
-    partial class Form1
+    partial class ScreenMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenMain));
             timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 

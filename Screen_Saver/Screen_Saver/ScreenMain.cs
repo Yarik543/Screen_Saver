@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Screen_Saver
 {
-    public partial class Form1 : Form
+    public partial class ScreenMain : Form
     {
         class Snowflake
         {
@@ -20,7 +20,7 @@ namespace Screen_Saver
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private Random rand = new Random();
 
-        public Form1()
+        public ScreenMain()
         {
             InitializeComponent();
 
