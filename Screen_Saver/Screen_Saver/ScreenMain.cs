@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -15,7 +15,7 @@ namespace Screen_Saver
             public float Y;
             public float Speed;
             public float Size;
-            public bool IsStar; // звёздочка или шарик
+            public bool IsStar; // 
         }
 
         private List<Snowflake> snowflakes = new List<Snowflake>();
@@ -28,7 +28,7 @@ namespace Screen_Saver
             Console.OutputEncoding = Encoding.UTF8;
             InitializeComponent();
 
-            // Настройки окна
+            // 
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
             this.TopMost = true;
@@ -36,13 +36,12 @@ namespace Screen_Saver
             this.KeyDown += (s, e) => this.Close();
             this.MouseDown += (s, e) => this.Close();
 
-            // Создаём снежинки
+            // 
             for (int i = 0; i < 150; i++)
             {
                 snowflakes.Add(CreateSnowflake());
             }
 
-            // Таймер
             timer.Interval = 10;
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -57,7 +56,7 @@ namespace Screen_Saver
                 Y = rand.Next(-Screen.PrimaryScreen.Bounds.Height, 0),
                 Speed = (float)(rand.NextDouble() * 5 + size / 6f),
                 Size = size,
-                IsStar = rand.Next(2) == 0 // половина кружки, половина звёздочки
+                IsStar = rand.Next(2) == 0 // 
             };
         }
 
@@ -69,7 +68,7 @@ namespace Screen_Saver
 
                 if (flake.Y > Screen.PrimaryScreen.Bounds.Height)
                 {
-                    // перезапускаем сверху
+                    // 
                     flake.Y = -flake.Size;
                     flake.X = rand.Next(0, Screen.PrimaryScreen.Bounds.Width);
                 }
@@ -88,13 +87,13 @@ namespace Screen_Saver
                 {
                     if (flake.IsStar)
                     {
-                        // рисуем простую "звёздочку" (крестик)
+                        // 
                         g.DrawLine(pen, flake.X - flake.Size / 2, flake.Y, flake.X + flake.Size / 2, flake.Y);
                         g.DrawLine(pen, flake.X, flake.Y - flake.Size / 2, flake.X, flake.Y + flake.Size / 2);
                     }
                     else
                     {
-                        // рисуем круг
+                        // 
                         g.FillEllipse(brush, flake.X, flake.Y, flake.Size, flake.Size);
                     }
                 }
