@@ -9,15 +9,6 @@ namespace Screen_Saver
     public partial class ScreenMain : Form
     {
 
-        class Snowflake
-        {
-            public float X;
-            public float Y;
-            public float Speed;
-            public float Size;
-            public bool IsStar; // звёздочка или шарик
-        }
-
         private List<Snowflake> snowflakes = new List<Snowflake>();
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private Random rand = new Random();
@@ -25,7 +16,6 @@ namespace Screen_Saver
 
         public ScreenMain()
         {
-            Console.OutputEncoding = Encoding.UTF8;
             InitializeComponent();
 
             // Настройка формы
