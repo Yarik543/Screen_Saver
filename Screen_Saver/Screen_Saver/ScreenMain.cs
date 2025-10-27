@@ -13,7 +13,7 @@ namespace Screen_Saver
         private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private Random rand = new Random();
 
-
+        private Bitmap[] snowflakeImages;
         public ScreenMain()
         {
             InitializeComponent();
@@ -26,7 +26,13 @@ namespace Screen_Saver
             this.KeyDown += (s, e) => this.Close();
             this.MouseDown += (s, e) => this.Close();
 
-            // Добавление снежинок
+            // Грузим картинки из ресурсов
+            snowflakeImages = new Bitmap[]
+            {
+                Properties.Resources.q,
+                Properties.Resources.w
+            };
+
             for (int i = 0; i < 150; i++)
             {
                 snowflakes.Add(CreateSnowflake());
@@ -39,14 +45,14 @@ namespace Screen_Saver
 
         private Snowflake CreateSnowflake()
         {
-            float size = rand.Next(5, 25);
+            var size = rand.Next(15, 50); // чуть крупнее, т.к. изображение красивее
             return new Snowflake
             {
                 X = rand.Next(0, Screen.PrimaryScreen.Bounds.Width),
                 Y = rand.Next(-Screen.PrimaryScreen.Bounds.Height, 0),
-                Speed = (float)(rand.NextDouble() * 5 + size / 6f),
+                Speed = (float)(rand.NextDouble() * 3 + size / 15f),
                 Size = size,
-                IsStar = rand.Next(2) == 0 // половина кружки, половина звезды
+                Image = snowflakeImages[rand.Next(snowflakeImages.Length)]
             };
         }
 
@@ -70,23 +76,9 @@ namespace Screen_Saver
         {
             Graphics g = e.Graphics;
 
-            using (SolidBrush brush = new SolidBrush(Color.White))
-            using (Pen pen = new Pen(Color.White, 1))
+            foreach (var flake in snowflakes)
             {
-                foreach (var flake in snowflakes)
-                {
-                    if (flake.IsStar)
-                    {
-                        // Рисуем звездочку крестик
-                        g.DrawLine(pen, flake.X - flake.Size / 2, flake.Y, flake.X + flake.Size / 2, flake.Y);
-                        g.DrawLine(pen, flake.X, flake.Y - flake.Size / 2, flake.X, flake.Y + flake.Size / 2);
-                    }
-                    else
-                    {
-                        // Рисуем круг
-                        g.FillEllipse(brush, flake.X, flake.Y, flake.Size, flake.Size);
-                    }
-                }
+                g.DrawImage(flake.Image, flake.X, flake.Y, flake.Size, flake.Size);
             }
         }
     }

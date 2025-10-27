@@ -12,6 +12,6 @@ namespace Screen_Saver
         public float Y { get; set; }
         public float Speed { get; set; }
         public float Size { get; set; }
-        public bool IsStar { get; set; } // звёздочка или шарик
+        public Bitmap Image { get; set; } 
     }
 }
