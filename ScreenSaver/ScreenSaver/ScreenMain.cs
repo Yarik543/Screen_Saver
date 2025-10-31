@@ -4,7 +4,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Screen_Saver
+
+namespace ScreenSaver
 {
     public partial class ScreenMain : Form
     {
@@ -17,7 +18,6 @@ namespace Screen_Saver
         public ScreenMain()
         {
             InitializeComponent();
-
             // Настройка формы
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;

@@ -1,4 +1,4 @@
-﻿namespace Screen_Saver
+﻿namespace ScreenSaver
 {
     partial class ScreenMain
     {
@@ -29,19 +29,21 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenMain));
             timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // Form1
+            // timer1
+            // 
+            timer1.Tick += Timer_Tick;
+            // 
+            // ScreenMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.village;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
-            Name = "Form1";
+            Name = "ScreenMain";
             Text = "Снегопад в деревне";
             ResumeLayout(false);
         }

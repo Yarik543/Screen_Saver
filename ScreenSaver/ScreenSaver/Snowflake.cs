@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Screen_Saver
+namespace ScreenSaver
 {
     public class Snowflake
     {
@@ -12,6 +12,6 @@ namespace Screen_Saver
         public float Y { get; set; }
         public float Speed { get; set; }
         public float Size { get; set; }
-        public Bitmap Image { get; set; } 
+        public Bitmap Image { get; set; }
     }
 }

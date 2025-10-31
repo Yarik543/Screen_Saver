@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Screen_Saver.Properties {
+namespace ScreenSaver.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Screen_Saver.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Screen_Saver.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ScreenSaver.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,16 @@ namespace Screen_Saver.Properties {
         internal static System.Drawing.Bitmap q {
             get {
                 object obj = ResourceManager.GetObject("q", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap village {
+            get {
+                object obj = ResourceManager.GetObject("village", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,4 +1,4 @@
-namespace Screen_Saver
+﻿namespace ScreenSaver
 {
     internal static class Program
     {
